@@ -1,0 +1,33 @@
+<div class="l-tracks">
+  <h1>Top Tracks</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Album</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Preview</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let track of tracks; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <th scope="row">
+          <img class="l-track-img" src="{{ track.album.cover_small }}" />
+        </th>
+        <td>{{ track.title }}</td>
+        <td>{{ track.album.title }}</td>
+        <td>{{ track.rank }}</td>
+        <td>{{ track.duration | minuteSeconds }}</td>
+        <td>
+          <button mat-icon-button (click)="handleOpenTrack(track.preview)">
+            <mat-icon>play_circle_filled</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

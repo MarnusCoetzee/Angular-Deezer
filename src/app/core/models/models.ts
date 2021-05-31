@@ -1,5 +1,4 @@
 export interface Artist {
-  data: any[];
   id: number;
   name: string;
   link: string;
@@ -15,20 +14,32 @@ export interface Artist {
   tracklist: string;
 }
 
-export interface Album {}
+export interface Album {
+  id: number;
+  title: string;
+  link: string;
+  cover: string;
+  cover_small: string;
+  cover_medium: string;
+  cover_big: string;
+  cover_xl: string;
+  genre_id: string;
+  fans: number;
+  release_date: Date;
+  record_type: string;
+  explicit_lyrics: boolean;
+}
 
-export interface Chart {}
-
-export interface Genre {}
-
-export interface Infos {}
-
-export interface Options {}
-
-export interface Playlist {}
-
-export interface Radio {}
-
-export interface Track {}
-
-export interface User {}
+export interface Track {
+  id: number;
+  readable: boolean;
+  title: string;
+  title_short: string;
+  title_version: string;
+  duration: number;
+  rank: number;
+  explicit_lyrics: boolean;
+  preview: string;
+  artist: Artist;
+  album: Album;
+}

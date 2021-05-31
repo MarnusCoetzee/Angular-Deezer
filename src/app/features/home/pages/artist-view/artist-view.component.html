@@ -1,3 +1,33 @@
 <div class="container">
-  <p>ARTIST PROFILE</p>
+  <div *ngIf="artist$ | async as artist">
+    <div class="d-flex flex-row flex-wrap mt-5">
+      <div class="col-lg-6 col-sm-12">
+        <img src="{{ artist.picture_big }}" />
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <h1>{{ artist.name }}</h1>
+        <h2>
+          <strong class="text-decoration: underline">{{
+            artist.nb_fan | numberFormat
+          }}</strong>
+          Fans
+        </h2>
+        <div *ngIf="tracks$ | async as tracks">
+          <app-artist-tracks [tracks]="tracks"></app-artist-tracks>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="albums$ | async as albums"
+      class="mt-5 d-flex flex-row flex-wrap"
+    >
+      <app-artist-albums [albums]="albums"></app-artist-albums>
+    </div>
+  </div>
+  <div class="l-loading d-flex justify-content-center">
+    <mat-progress-spinner
+      [mode]="'indeterminate'"
+      *ngIf="loading$ | async"
+    ></mat-progress-spinner>
+  </div>
 </div>

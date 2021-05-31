@@ -1,0 +1,12 @@
+<div class="l-album-card mx-2 my-2">
+  <mat-card>
+    <img mat-card-image src="{{ album.cover }}" alt="Album Cover" />
+    <h4>{{ album.title }}</h4>
+    <p>
+      <strong>{{ album.fans | numberFormat }}</strong> Fans
+    </p>
+    <p>
+      <strong>{{ album.release_date | date }}</strong>
+    </p>
+  </mat-card>
+</div>

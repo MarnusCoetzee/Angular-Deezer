@@ -1,0 +1,17 @@
+<h1 class="ml-3">Albums</h1>
+<div
+  class="
+    l-container
+    d-flex
+    flex-row flex-wrap
+    justify-content-xs-center
+    justify-content-sm-center
+    justify-content-md-center
+    justify-content-lg-around
+    justify-content-xl-around
+  "
+>
+  <div *ngFor="let album of albums">
+    <app-album [album]="album"></app-album>
+  </div>
+</div>

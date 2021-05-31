@@ -10,7 +10,8 @@
     <mat-card-header>
       <mat-card-title class="mt-2">{{ artist.name }}</mat-card-title>
       <mat-card-subtitle
-        ><strong>{{ artist.nb_fan }}</strong> Fans</mat-card-subtitle
+        ><strong>{{ artist.nb_fan | numberFormat }}</strong>
+        Fans</mat-card-subtitle
       >
     </mat-card-header>
   </mat-card>

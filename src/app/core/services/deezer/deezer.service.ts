@@ -1,3 +1,4 @@
+import { Album, Track } from './../../models/models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,8 +19,22 @@ export class DeezerService {
     );
   }
 
-  getArtistDetailsByID(id: number) {
+  getArtistDetailsByID(id: number): Observable<Artist> {
     const url = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/${id}`;
+    return this.http.get<Artist>(url);
+  }
+
+  getArtistTracks(id: number): Observable<Track[]> {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/${id}/top`;
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        return response.data;
+      })
+    );
+  }
+
+  getArtistAlbums(id: number): Observable<Album[]> {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/${id}/albums`;
     return this.http.get<any>(url).pipe(
       map((response) => {
         return response.data;
