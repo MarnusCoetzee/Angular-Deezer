@@ -1,0 +1,17 @@
+<div class="l-container mx-2 my-2">
+  <mat-card (click)="handleRouteToArtistProfile(artist.id)">
+    <div class="d-flex justify-content-center">
+      <img
+        src="{{ artist.picture_medium }}"
+        alt="Artist Medium Picture"
+        loading="lazy"
+      />
+    </div>
+    <mat-card-header>
+      <mat-card-title class="mt-2">{{ artist.name }}</mat-card-title>
+      <mat-card-subtitle
+        ><strong>{{ artist.nb_fan }}</strong> Fans</mat-card-subtitle
+      >
+    </mat-card-header>
+  </mat-card>
+</div>
