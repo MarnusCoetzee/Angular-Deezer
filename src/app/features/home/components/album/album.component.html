@@ -1,6 +1,11 @@
 <div class="l-album-card mx-2 my-2">
   <mat-card>
-    <img mat-card-image src="{{ album.cover }}" alt="Album Cover" />
+    <img
+      mat-card-image
+      src="{{ album.cover }}"
+      alt="Album Cover"
+      loading="lazy"
+    />
     <h4>{{ album.title }}</h4>
     <p>
       <strong>{{ album.fans | numberFormat }}</strong> Fans
