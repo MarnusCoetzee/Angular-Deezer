@@ -1,3 +1,4 @@
+import { NgrxModule } from './core/modules/ngrx/ngrx.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { NetworkInterceptor } from './core/interceptors/network.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgrxModule,
   ],
   providers: [
     {
