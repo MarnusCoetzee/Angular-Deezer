@@ -1,3 +1,6 @@
+# CORS Issue with Deezer API
+Visit https://cors-anywhere.herokuapp.com/ to allow the application to connect with the API without CORS issues
+
 # DvtDeezer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
