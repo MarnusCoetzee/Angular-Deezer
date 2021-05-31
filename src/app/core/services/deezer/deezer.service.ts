@@ -1,16 +1,16 @@
-import { ErrorService } from './../error/error.service';
 import { Album, Track } from './../../models/models';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, retry, catchError } from 'rxjs/operators';
 import { Artist } from '../../models/models';
 import { environment } from '../../../../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
 export class DeezerService {
-  constructor(private http: HttpClient, private error: ErrorService) {}
+  constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
   searchArtists(query: string): Observable<Artist[]> {
     const url = `${environment.API_URL}search/artist?q=${query}`;
@@ -20,17 +20,17 @@ export class DeezerService {
       }),
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        return this.error.handleError(error);
+        return this.handleError(error);
       })
     );
   }
 
   getArtistDetailsByID(id: number): Observable<Artist> {
     const url = `${environment.API_URL}artist/${id}`;
-    return this.http.get<Artist>(url).pipe(
+    return this.http.get<any>(url).pipe(
       retry(1),
-      catchError((error: HttpErrorResponse) => {
-        return this.error.handleError(error);
+      catchError((error) => {
+        return this.handleError(error);
       })
     );
   }
@@ -43,7 +43,7 @@ export class DeezerService {
       }),
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        return this.error.handleError(error);
+        return this.handleError(error);
       })
     );
   }
@@ -56,8 +56,22 @@ export class DeezerService {
       }),
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        return this.error.handleError(error);
+        return this.handleError(error);
       })
     );
+  }
+
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+      this.snackbar.open(errorMessage, '', { duration: 3000 });
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
