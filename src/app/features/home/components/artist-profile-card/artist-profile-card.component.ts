@@ -15,6 +15,6 @@ export class ArtistProfileCardComponent implements OnInit {
   ngOnInit(): void {}
 
   handleRouteToArtistProfile(artistId: number) {
-    this.router.navigate(['home/artist', artistId]);
+    this.router.navigate(['artist', artistId]);
   }
 }
